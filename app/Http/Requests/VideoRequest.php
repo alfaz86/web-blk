@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class VideoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users,email,' . $this->id,
-            'password' => 'required|min:8|max:255',
-            'role' => 'required|in:admin,user',
+            // 'name' => 'required|min:5|max:255'
         ];
     }
 
@@ -40,10 +37,7 @@ class UserRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name'=> 'Nama',
-            'email'=> 'Email',
-            'password'=> 'Password',
-            'role'=> 'Role',
+            //
         ];
     }
 
@@ -55,10 +49,7 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            '*.required' => ':attribute harus diisi',
-            'email.unique' => 'Email sudah terdaftar',
-            'email.email' => 'Email tidak valid',
-            'password'=> 'Password minimal 8 karakter',
+            //
         ];
     }
 }

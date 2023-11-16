@@ -122,6 +122,7 @@ return [
         // 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
 
         'js/global.js',
+        'https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js'
     ],
 
     // JS files that are loaded in all pages, using Laravel's mix() helper

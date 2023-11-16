@@ -2,49 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\VideoRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class UserCrudController
+ * Class VideoCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class UserCrudController extends CrudController
+class VideoCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
-
-    private function getAttibutes($show = true)
-    {
-        return [
-            [
-                'label' => 'Nama',
-                'type' => 'text',
-                'name' => 'name',
-            ],
-            [
-                'label' => 'Email',
-                'type' => 'email',
-                'name' => 'email',
-            ],
-            [
-                'label' => 'Password',
-                'type' => $show ? 'password' : 'hidden',
-                'name' => 'password',
-            ],
-            [
-                'label' => 'Role',
-                'type' => 'enum',
-                'name' => 'role',
-                'default' => 'user',
-            ],
-        ];
-    }
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -53,9 +26,9 @@ class UserCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\User::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
-        CRUD::setEntityNameStrings('user', 'users');
+        CRUD::setModel(\App\Models\Video::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/video');
+        CRUD::setEntityNameStrings('video', 'videos');
     }
 
     /**
@@ -66,12 +39,14 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
-
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+            'label' => 'Video',
+            'type' => 'custom_html',
+            'name' => 'embed_url',
+            'value' => function ($entry) {
+                return "<div style='width: 100%'>" . $entry->embed_url . "</div>";
+            },
+        ]);
     }
 
     /**
@@ -82,8 +57,13 @@ class UserCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(UserRequest::class);
-        CRUD::addFields($this->getAttibutes());
+        CRUD::setValidation(VideoRequest::class);
+        CRUD::setFromDb(); // set fields from db columns.
+
+        /**
+         * Fields can be defined using the fluent syntax:
+         * - CRUD::field('price')->type('number');
+         */
     }
 
     /**
@@ -94,7 +74,6 @@ class UserCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        CRUD::setValidation(UserRequest::class);
-        CRUD::addFields($this->getAttibutes(false));
+        $this->setupCreateOperation();
     }
 }

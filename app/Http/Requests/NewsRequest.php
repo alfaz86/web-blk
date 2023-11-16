@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Route;
 
-class UserRequest extends FormRequest
+class NewsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +25,11 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $isRequiredForThumbnail = Route::currentRouteName() == 'news.update' ? 'nullable' : 'required';
         return [
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users,email,' . $this->id,
-            'password' => 'required|min:8|max:255',
-            'role' => 'required|in:admin,user',
+            'title' => 'required|max:255',
+            'news_thumbnail' => $isRequiredForThumbnail . '|image|mimes:jpeg,png,jpg|max:5120',
+            'content' => 'required|min:10',
         ];
     }
 
@@ -40,10 +41,9 @@ class UserRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name'=> 'Nama',
-            'email'=> 'Email',
-            'password'=> 'Password',
-            'role'=> 'Role',
+            'title' => 'Judul',
+            'news_thumbnail' => 'Gambar',
+            'content' => 'Konten',
         ];
     }
 
@@ -56,9 +56,10 @@ class UserRequest extends FormRequest
     {
         return [
             '*.required' => ':attribute harus diisi',
-            'email.unique' => 'Email sudah terdaftar',
-            'email.email' => 'Email tidak valid',
-            'password'=> 'Password minimal 8 karakter',
+            'news_thumbnail.image' => 'Gambar harus berupa file image',
+            'news_thumbnail.mimes' => 'Gambar harus berupa file type: jpeg, png, jpg',
+            'news_thumbnail.max' => 'Gambar maksimal 5MB',
+            'content.min' => 'Konten minimal 10 karakter',
         ];
     }
 }
