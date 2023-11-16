@@ -103,12 +103,6 @@ class RegistrationCrudController extends CrudController
         ]);
 
         CRUD::addColumn([
-            'label' => 'Alamat',
-            'type' => 'text',
-            'name' => 'address',
-        ]);
-
-        CRUD::addColumn([
             'label' => 'Foto KTP',
             'type' => 'custom_html',
             'name' => 'ktpImage',
