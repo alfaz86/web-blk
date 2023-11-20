@@ -20,17 +20,13 @@
                 <div class="card-status-start bg-success"></div>
 
                 <div class="card-body">
-                    <div class="subheader ">Registered users.</div>
+                    <div class="subheader ">Total users.</div>
 
-                    <div class="h1 mb-3 ">132</div>
+                    <div class="h1 mb-3 ">{{ $total_user }}</div>
 
                     <div class="d-flex mb-2">
-                        <div class="card-text ">868 more until next milestone.</div>
-                    </div>
-
-                    <div class="progress progress-sm">
-                        <div class="progress-bar bg-success" style="width: 13.2%" role="progressbar" aria-valuenow="13.2" aria-valuemin="0" aria-valuemax="100" aria-label="13.2% Complete">
-                            <span class="visually-hidden">13.2% Complete</span>
+                        <div class="card-text ">
+                            <a href="{{ backpack_url('user') }}">Lihat user.</a>
                         </div>
                     </div>
 
@@ -43,24 +39,20 @@
         <div class="col-sm-6 col-lg-3">
             <div class="card mb-3  border-start-0 ">
 
-                <div class="ribbon ribbon-top bg-danger ">
-                    <i class="la la-bell fs-3"></i>
+                <div class="ribbon ribbon-top bg-info ">
+                    <i class="la la-clipboard-list fs-3"></i>
                 </div>
 
-                <div class="card-status-start bg-danger"></div>
+                <div class="card-status-start bg-info"></div>
 
                 <div class="card-body">
-                    <div class="subheader ">Articles.</div>
+                    <div class="subheader ">Total Pendaftar.</div>
 
-                    <div class="h1 mb-3 ">1031</div>
+                    <div class="h1 mb-3 ">{{ $total_registration }}</div>
 
                     <div class="d-flex mb-2">
-                        <div class="card-text ">Great! Don't stop.</div>
-                    </div>
-
-                    <div class="progress progress-sm">
-                        <div class="progress-bar bg-danger" style="width: 80%" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="80% Complete">
-                            <span class="visually-hidden">80% Complete</span>
+                        <div class="card-text ">
+                            <a href="{{ backpack_url('registration') }}">Lihat Semua Pendaftar.</a>
                         </div>
                     </div>
 
