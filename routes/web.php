@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsCrudController;
 use App\Http\Controllers\Admin\ProfileCrudController;
 use App\Http\Controllers\Admin\RegistrationCrudController;
 use App\Http\Controllers\Admin\VideoCrudController;
+use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'homePage']);
-Route::get('/hubungi-kami', function() {
-    return view('contact');
-})->name('contact.page');
+Route::get('/', [HomePageController::class, 'homePage']);
+Route::get('/hubungi-kami', [HomePageController::class, 'contactPage'])->name('contact.page');
 
 Route::get('/pendaftaran', [RegistrationCrudController::class, 'form'])->name('registration.form');
 Route::post('/pendaftaran', [RegistrationCrudController::class, 'store'])->name('registration.store');

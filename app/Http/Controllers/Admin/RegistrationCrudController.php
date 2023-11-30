@@ -173,6 +173,6 @@ class RegistrationCrudController extends CrudController
         $registration->addMediaFromRequest('ktp_image')->toMediaCollection('ktp_image');
         $registration->addMediaFromRequest('kk_image')->toMediaCollection('kk_image');
 
-        return redirect()->route('registration.form')->with('success', 'Registration successful');
+        return redirect()->route('registration.form')->with('success', 'Pendaftaran berhasil dilakukan.');
     }
 }

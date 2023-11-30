@@ -9,14 +9,14 @@
 @endsection
 
 @section('content')
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
 <div class="container-fluid py-3">
     <div class="container py-3">
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> {{ session('success') }}
+            </div>
+        @endif
         <div class="row align-items-center">
             <div class="col-lg-12">
                 <div class="section-title position-relative mb-4">
