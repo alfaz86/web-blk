@@ -8,6 +8,7 @@ use App\Models\News;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Backpack\CRUD\app\Library\Widget;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -82,7 +83,7 @@ class NewsCrudController extends CrudController
     {
         CRUD::setModel(News::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/news');
-        CRUD::setEntityNameStrings('news', 'news');
+        CRUD::setEntityNameStrings('berita', 'berita');
     }
 
     /**
@@ -192,11 +193,22 @@ class NewsCrudController extends CrudController
 
     public function pageView(News $news)
     {
-        dd($news);
-        // Logic to handle the preview
-        // ...
+        return redirect()->to('/media-informasi/berita/' . $news->slug);
+    }
 
-        // Redirect to the preview URL
-        // return redirect()->to('custom/preview/link/' . $id);
+    public function newsPage(Request $request)
+    {
+        $news = $this->crud->model->paginate(9);
+        $helper = new Helper();
+        $latestNews = $this->crud->model->latest()->take(5)->get();
+        return view('news.index', compact('news', 'helper', 'latestNews'));
+    }
+
+    public function detailNewsPage($slug)
+    {
+        $news = $this->crud->getModel()->where('slug', $slug)->first();
+        $helper = new Helper();
+        $latestNews = $this->crud->model->latest()->take(4)->get();
+        return view('news.detail', compact('news', 'helper', 'latestNews'));
     }
 }

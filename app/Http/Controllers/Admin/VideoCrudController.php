@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helper;
 use App\Http\Requests\VideoRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -28,7 +29,7 @@ class VideoCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Video::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/video');
-        CRUD::setEntityNameStrings('video', 'videos');
+        CRUD::setEntityNameStrings('video', 'video');
     }
 
     /**
@@ -75,5 +76,12 @@ class VideoCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function videoPage()
+    {
+        $videos = $this->crud->model->paginate(9);
+        $helper = new Helper();
+        return view('video.index', compact('videos', 'helper'));
     }
 }

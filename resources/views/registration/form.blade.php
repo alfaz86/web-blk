@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
 @section('header')
-    @include('layouts.header', [
+    @include('layouts.breadcrumbs', [
         'page' => 'registration',
         'title' => 'Pendaftaran',
-        'breadcrumbs' => ['PENDAFTARAN']
+        'breadcrumbs' => ['Pendaftaran']
     ])
 @endsection
 
