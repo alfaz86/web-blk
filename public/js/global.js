@@ -13,10 +13,12 @@ if (loginView()) {
     var icon = `<div class="text-center mb-3">
         <img src="${src}" id="icon" alt="logo-insun-medal" width="100">
     </div>`;
+    var html = '<a href="' + root + '">back to home</a>';
 
     // $(icon).insertBefore("form");
     $("footer").hide();
-    $("div.text-center > a").hide();
+    // $("div.text-center > a").hide();
+    $("div.text-center > a").html(html);
 }
 
 if (resetPasswordView()) {

@@ -28,7 +28,7 @@ class RegistrationCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Registration::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/registration');
-        CRUD::setEntityNameStrings('registration', 'registrations');
+        CRUD::setEntityNameStrings('pendaftaran', 'pendaftaran');
     }
 
     /**

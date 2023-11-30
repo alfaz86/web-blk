@@ -48,7 +48,7 @@ class ProfileCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Profile::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/profile');
-        CRUD::setEntityNameStrings('profile', 'profiles');
+        CRUD::setEntityNameStrings('profil', 'Profil');
     }
 
     /**
@@ -114,13 +114,27 @@ class ProfileCrudController extends CrudController
         $response = \DB::transaction(function () {
             $response = $this->traitUpdate();
             $news = $this->crud->getCurrentEntry();
-            $news->addMediaFromRequest('organizational_structure')
-                ->toMediaCollection('organizational_structure');
-            Storage::delete('public/' . $news['organizational_structure']);
+            if ($this->crud->getRequest()->file('organizational_structure')) {
+                $news->addMediaFromRequest('organizational_structure')
+                    ->toMediaCollection('organizational_structure');
+                Storage::delete('public/' . $news['organizational_structure']);
+            }
             
             return $response;
         });
 
         return $response;
+    }
+
+    public function organizationStructurePage()
+    {
+        $profile = $this->crud->model->first();
+        return view('profile.organization-structure', compact('profile'));
+    }
+
+    public function vissionAndMissionPage()
+    {
+        $profile = $this->crud->model->first();
+        return view('profile.vission-and-mission', compact('profile'));
     }
 }
