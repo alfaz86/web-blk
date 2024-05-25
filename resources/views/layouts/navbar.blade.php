@@ -26,7 +26,7 @@
                 <a href="{{ route('contact.page') }}" class="nav-item nav-link {{ request()->is('hubungi-kami') ? 'active' : '' }}">Hubungi Kami</a>
                 <a href="{{ route('registration.form') }}" class="nav-item nav-link {{ request()->is('pendaftaran') ? 'active' : '' }}">Pendaftaran</a>
             </div>
-            <a href="{{ backpack_url('/login') }}" class="btn btn-primary py-2 px-4 d-none d-lg-block">
+            <a href="{{ backpack_url('/login') }}" class="btn btn-primary py-2 px-4 cms-btn">
                 @if (backpack_user())
                     Dashboard
                 @else
