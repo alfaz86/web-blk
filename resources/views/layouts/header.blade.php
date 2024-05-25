@@ -1,7 +1,7 @@
 <div class="jumbotron jumbotron-fluid position-relative overlay-bottom" style="margin-bottom: 90px;">
-    <div class="container text-center my-5 py-5">
+    <div class="container text-center d-flex align-items-center justify-content-center h-100">
         @if ($page == 'home')
-            <h1 class="text-white display-1 mb-5">BLK Komunitas Ponpes Darul Falah</h1>
+            <h1 class="text-white display-1">BLK Komunitas Ponpes Darul Falah</h1>
         @else
             <h1 class="text-white display-3">{{ $title }}</h1>
             <div class="d-inline-flex text-white">

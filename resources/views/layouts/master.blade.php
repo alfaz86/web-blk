@@ -23,6 +23,17 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('assets/template/css/style.css') }}" rel="stylesheet">
+    <style>
+        @media (max-width: 992px) {
+            .cms-btn {
+                margin-top: 10px;
+                margin-left: 15px;
+            }
+            .jumbotron {
+                height: calc(100vh - 200px);
+            }
+        }
+    </style>
     @yield('style')
 </head>
 
@@ -52,9 +63,7 @@
         <div class="container mt-5 pt-5">
             <div class="row">
                 <div class="col-md-6 mb-5">
-                    <a href="/" class="navbar-brand">
-                        <h1 class="mt-n2 text-uppercase text-white">BLKK Ponpes Darul Falah</h1>
-                    </a>
+                    <h2 class="mt-n2 text-uppercase text-white text-break">BLKK Ponpes Darul Falah</h2>
                     <p class="m-0">Kami hadir sebagai respons terhadap pesatnya perkembangan teknologi informasi dan kebutuhan pelajar untuk mengembangkan keterampilan yang dibutuhkan dalam dunia kerja.</p>
                 </div>
             </div>

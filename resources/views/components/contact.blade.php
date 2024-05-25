@@ -4,7 +4,7 @@
         <div class="row align-items-center">
             <div class="col-lg-5 mb-5 mb-lg-0">
                 <div class="bg-light d-flex flex-column justify-content-center px-5" style="height: 450px;">
-                    <div class="d-flex align-items-center mb-5">
+                    <div class="d-flex align-items-center mb-5 text-break">
                         <div class="btn-icon bg-primary mr-4">
                             <i class="fa fa-2x fa-map-marker-alt text-white"></i>
                         </div>
@@ -13,7 +13,7 @@
                             <p class="m-0">Cimanggu, Kec. Cisalak, Kabupaten Subang, Jawa Barat 41283</p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center mb-5">
+                    <div class="d-flex align-items-center mb-5 text-break">
                         <div class="btn-icon bg-secondary mr-4">
                             <i class="fa fa-2x fa-phone-alt text-white"></i>
                         </div>
@@ -22,7 +22,7 @@
                             <p class="m-0">0852-2050-2191</p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center text-break">
                         <div class="btn-icon bg-warning mr-4">
                             <i class="fa fa-2x fa-envelope text-white"></i>
                         </div>
