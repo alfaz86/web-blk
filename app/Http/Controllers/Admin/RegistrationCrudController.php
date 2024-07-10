@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\RegistrationRequest;
+use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -16,7 +17,7 @@ class RegistrationCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     // use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     // use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    // use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation{ destroy as traitDestroy; }
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
@@ -174,5 +175,13 @@ class RegistrationCrudController extends CrudController
         $registration->addMediaFromRequest('kk_image')->toMediaCollection('kk_image');
 
         return redirect()->route('registration.form')->with('success', 'Pendaftaran berhasil dilakukan.');
+    }
+
+    protected function destroy()
+    {
+        // delete registration by user id
+        $registration = $this->crud->getCurrentEntry();
+        User::where('id', $registration->user_id)->delete();
+        return $this->traitDestroy($registration->id);
     }
 }

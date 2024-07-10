@@ -2,7 +2,7 @@
 <li class="nav-item"><a class="nav-link text-error" href="{{ backpack_url('dashboard') }}"><i class="la la-home nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
 
 <li class="nav-separator">Modul</li>
-<x-backpack::menu-item title="User" icon="la la-user" :link="backpack_url('user')" />
+<x-backpack::menu-item title="Admin" icon="la la-user" :link="backpack_url('user')" />
 <x-backpack::menu-item title="Video" icon="la la-video" :link="backpack_url('video')" />
 <x-backpack::menu-item title="Berita" icon="la la-newspaper" :link="backpack_url('news')" />
 <x-backpack::menu-item title="Pendaftaran" icon="la la-clipboard-list" :link="backpack_url('registration')" />
