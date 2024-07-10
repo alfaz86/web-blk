@@ -28,7 +28,6 @@ class UserRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users,email,' . $this->id,
             'password' => 'required|min:8|max:255',
-            'role' => 'required|in:admin,user',
         ];
     }
 

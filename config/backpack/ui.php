@@ -73,10 +73,10 @@ return [
     // ------
 
     // Developer or company name. Shown in footer.
-    'developer_name' => 'alfaz86',
+    'developer_name' => false,
 
     // Developer website. Link in footer. Type false if you want to hide it.
-    'developer_link' => 'https://alfaz86.github.io',
+    'developer_link' => false,
 
     // Show powered by Laravel Backpack in the footer? true/false
     'show_powered_by' => false,

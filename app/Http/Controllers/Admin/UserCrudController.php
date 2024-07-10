@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Registration;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -16,7 +17,7 @@ class UserCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation{ destroy as traitDestroy; }
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     private function getAttibutes($show = true)
@@ -36,13 +37,7 @@ class UserCrudController extends CrudController
                 'label' => 'Password',
                 'type' => $show ? 'password' : 'hidden',
                 'name' => 'password',
-            ],
-            [
-                'label' => 'Role',
-                'type' => 'enum',
-                'name' => 'role',
-                'default' => 'user',
-            ],
+            ]
         ];
     }
 
@@ -66,7 +61,9 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        CRUD::addClause('where', 'role', 'admin');
+        CRUD::setFromDb();
+        CRUD::removeColumn('role');
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -96,5 +93,13 @@ class UserCrudController extends CrudController
     {
         CRUD::setValidation(UserRequest::class);
         CRUD::addFields($this->getAttibutes(false));
+    }
+
+    protected function destroy()
+    {
+        // delete registration by user id
+        $id = $this->crud->getCurrentEntryId();
+        Registration::where('user_id', $id)->delete();
+        return $this->traitDestroy($id);
     }
 }

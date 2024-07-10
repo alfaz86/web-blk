@@ -25,6 +25,10 @@
         .content-container > p {
             color: black;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
     </style>
 @endsection
 
